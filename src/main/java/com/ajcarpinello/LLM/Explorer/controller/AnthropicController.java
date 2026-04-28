@@ -1,23 +1,23 @@
 package com.ajcarpinello.LLM.Explorer.controller;
 
-import org.springframework.ai.openai.OpenAiChatModel;
+import org.springframework.ai.anthropic.AnthropicChatModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/openai")
+@RequestMapping("/api/anthropic")
 @CrossOrigin("*")
-public class OpenAIController {
+public class AnthropicController {
 
-    private OpenAiChatModel chatModel;
+    private AnthropicChatModel chatModel;
 
-    public OpenAIController(OpenAiChatModel chatModel) {
+    public AnthropicController(AnthropicChatModel chatModel) {
         this.chatModel = chatModel;
     }
 
     @GetMapping("/{message}")
     public ResponseEntity<String> getAnswer(@PathVariable String message) {
-        // String response = chatModel.call(message);
-        return ResponseEntity.ok("response");
+        String response = chatModel.call(message);
+        return ResponseEntity.ok(response);
     }
 }
